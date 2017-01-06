@@ -25,7 +25,7 @@ public class MainController {
         // create automatic comment
         ToDoCommentDAO cdao = new ToDoCommentDAO();
         ToDoComment comm = new ToDoComment();
-        comm.setCreated(LocalDateTime.now());
+        comm.setCreated(LocalDateTime.now().toString());
         comm.setTodoGid(ret.getGid());
         comm.setComment("Automatically created comment during item creation at " + LocalDateTime.now().toString());
         cdao.create(comm);

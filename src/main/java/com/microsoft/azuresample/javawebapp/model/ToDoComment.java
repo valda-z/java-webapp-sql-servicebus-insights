@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class ToDoComment {
     private String id;
     private String todoGid;
-    private LocalDateTime created;
+    private String created;
     private String comment;
 
     public String getId() {
@@ -27,11 +27,11 @@ public class ToDoComment {
         this.todoGid = todoGid;
     }
 
-    public LocalDateTime getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
