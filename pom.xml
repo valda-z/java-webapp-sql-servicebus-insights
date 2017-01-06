@@ -51,10 +51,12 @@
 
     <properties>
         <docker.image.prefix>valdazure</docker.image.prefix>
+        <docker.image.url>######-microsoft.azurecr.io</docker.image.url>
         <java.version>1.8</java.version>
     </properties>
 
 
+    <!-- https://github.com/spotify/docker-maven-plugin -->
     <build>
         <plugins>
             <plugin>
@@ -67,7 +69,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageName>${docker.image.url}/${docker.image.prefix}/${project.artifactId}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
@@ -76,6 +78,13 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <forceTags>true</forceTags>
+                    <serverId>docker-hub</serverId>
+                    <registryUrl>https://${docker.image.url}</registryUrl>
                 </configuration>
             </plugin>
         </plugins>
