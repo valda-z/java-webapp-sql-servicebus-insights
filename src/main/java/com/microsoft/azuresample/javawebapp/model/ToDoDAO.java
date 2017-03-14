@@ -1,7 +1,10 @@
 package com.microsoft.azuresample.javawebapp.model;
 
 import com.microsoft.azuresample.javawebapp.Utils.SqlServerHelper;
+import com.microsoft.azuresample.javawebapp.controller.MainController;
 import com.microsoft.sqlserver.jdbc.SQLServerConnection;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -20,9 +23,12 @@ import java.util.List;
 @Component
 public class ToDoDAO {
 
+    private static final Logger logger = LogManager.getLogger(MainController.class);
+
     @PostConstruct
     public void init(){
         System.out.println("### INIT of ToDoDAO called.");
+        logger.info("INIT of ToDoDAO called");
 
         try {
             SQLServerConnection conn = SqlServerHelper.GetConnection();
@@ -45,6 +51,7 @@ public class ToDoDAO {
             }
         } catch (SQLException e) {
             System.out.println("ERROR: cannot connect to SQL Server.");
+            logger.error("ERROR: cannot connect to SQL Server.");
             e.printStackTrace();
         }
     }
@@ -71,6 +78,7 @@ public class ToDoDAO {
             }
         } catch (SQLException e) {
             System.out.println("ERROR: cannot connect to SQL Server.");
+            logger.error("ERROR: cannot connect to SQL Server.");
             e.printStackTrace();
         }
         return ret;
@@ -110,6 +118,11 @@ public class ToDoDAO {
                                     + item.getNote() + ", Category:"
                                     + item.getCategory()
                             );
+
+                            logger.warn("Inserted record: Id:" + item.getId() + ", GId:"
+                                    + item.getGid() + ", Note:"
+                                    + item.getNote() + ", Category:"
+                                    + item.getCategory());
                         }
                         rs2.close();
                     }finally {
@@ -117,6 +130,7 @@ public class ToDoDAO {
                     }
                 } catch (SQLException e) {
                     System.out.println("ERROR: cannot connect to SQL Server.");
+                    logger.error("ERROR: cannot connect to SQL Server.");
                     e.printStackTrace();
                 }
 
@@ -125,6 +139,7 @@ public class ToDoDAO {
             }
         } catch (SQLException e) {
             System.out.println("ERROR: cannot connect to SQL Server.");
+            logger.error("ERROR: cannot connect to SQL Server.");
             e.printStackTrace();
         }
 
@@ -148,6 +163,7 @@ public class ToDoDAO {
             }
         } catch (Exception e) {
             System.out.println("ERROR: cannot connect to SQL Server.");
+            logger.error("ERROR: cannot connect to SQL Server.");
             StringWriter sw = new StringWriter();
             e.printStackTrace(new PrintWriter(sw));
             ret = sw.toString();

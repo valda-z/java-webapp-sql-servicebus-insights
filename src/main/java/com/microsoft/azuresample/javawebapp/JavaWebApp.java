@@ -1,6 +1,8 @@
 package com.microsoft.azuresample.javawebapp;
 
 import com.microsoft.applicationinsights.web.internal.WebRequestTrackingFilter;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,9 +19,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 public class JavaWebApp  extends SpringBootServletInitializer {
 
+    private static final Logger logger = LogManager.getLogger(JavaWebApp.class);
+
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(JavaWebApp.class, args);
         System.out.println("My Spring Boot app started ...");
+        logger.info("My SpringBoot app started...");
     }
 
     @Override
