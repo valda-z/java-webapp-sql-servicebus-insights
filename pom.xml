@@ -15,10 +15,17 @@
         <version>1.4.2.RELEASE</version>
     </parent>
 
+    <packaging>war</packaging>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -70,6 +77,22 @@
     <!-- https://github.com/spotify/docker-maven-plugin -->
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <port>8080</port>
+                    <path>/</path>
+                    <update>true</update>
+                    <systemProperties>
+                        <JAVA_OPTS>-javaagent:"C:\Src\samples\java-webapp-sql-servicebus-insights\lib\applicationinsights-agent-1.0.7.jar"</JAVA_OPTS>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
