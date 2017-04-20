@@ -45,7 +45,7 @@ public class ToDoDAO {
                             " [Id] ASC\n" +
                             ") )"))
             {
-                stmt.executeUpdate();
+                stmt.executeBatch();
             }finally {
                 conn.close();
             }
@@ -148,6 +148,10 @@ public class ToDoDAO {
 
     public String test(){
         String ret = "";
+
+        // call init for testing
+        init();
+
         try {
             SQLServerConnection conn = SqlServerHelper.GetConnection();
             try (PreparedStatement selectStatement = conn.prepareStatement(
