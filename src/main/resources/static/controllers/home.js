@@ -19,7 +19,7 @@ angular.module('myApp.home', ['ngRoute', 'ui.bootstrap'])
 
     $scope.loadData = function() {
         myUtils.showPleaseWait();
-        $http.get('/api/ToDoes').success(function (data) {
+        $http.get('./api/ToDoes').success(function (data) {
             $scope.data.items = data;
         }).finally(function(data) {
             myUtils.hidePleaseWait();
@@ -27,14 +27,14 @@ angular.module('myApp.home', ['ngRoute', 'ui.bootstrap'])
     };
 
     $scope.addItem = function (item) {
-        $http.post('/api/ToDoes', item).success(function (data) {
+        $http.post('./api/ToDoes', item).success(function (data) {
         }).finally(function (data) {
             $scope.loadData();
         });
     };
     
     $scope.showComments = function (gid) {
-        $http.get('/api/ToDoComments', {params:{"gid": gid}})
+        $http.get('./api/ToDoComments', {params:{"gid": gid}})
         .success(function (data) {
             $scope.data.comments = data;
         }).finally(function(data) {

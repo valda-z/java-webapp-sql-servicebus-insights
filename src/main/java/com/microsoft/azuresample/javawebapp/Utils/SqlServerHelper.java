@@ -12,11 +12,12 @@ public class SqlServerHelper {
 
     public static String sqlurl;
 
-    public static SQLServerConnection GetConnection() throws SQLException {
+    public static SQLServerConnection GetConnection() throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         if(sqlurl==null){
             new SqlServerHelper().Init();
         }
 
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
         SQLServerConnection connection = (SQLServerConnection) DriverManager.getConnection(sqlurl);
         return connection;
     }

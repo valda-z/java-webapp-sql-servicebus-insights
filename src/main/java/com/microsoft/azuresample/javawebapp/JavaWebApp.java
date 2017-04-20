@@ -1,6 +1,7 @@
 package com.microsoft.azuresample.javawebapp;
 
 import com.microsoft.applicationinsights.web.internal.WebRequestTrackingFilter;
+import com.microsoft.azuresample.javawebapp.model.ToDoDAO;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
@@ -24,6 +25,10 @@ public class JavaWebApp  extends SpringBootServletInitializer {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(JavaWebApp.class, args);
         System.out.println("My Spring Boot app started ...");
+
+        ToDoDAO dao = new ToDoDAO();
+        dao.init();
+
         logger.info("My SpringBoot app started...");
     }
 

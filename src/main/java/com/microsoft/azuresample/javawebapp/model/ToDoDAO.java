@@ -49,7 +49,7 @@ public class ToDoDAO {
             }finally {
                 conn.close();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("ERROR: cannot connect to SQL Server.");
             logger.error("ERROR: cannot connect to SQL Server.");
             e.printStackTrace();
@@ -76,7 +76,7 @@ public class ToDoDAO {
             }finally {
                 conn.close();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("ERROR: cannot connect to SQL Server.");
             logger.error("ERROR: cannot connect to SQL Server.");
             e.printStackTrace();
@@ -137,7 +137,7 @@ public class ToDoDAO {
             }finally {
                 conn.close();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("ERROR: cannot connect to SQL Server.");
             logger.error("ERROR: cannot connect to SQL Server.");
             e.printStackTrace();
